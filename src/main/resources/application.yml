@@ -1,0 +1,13 @@
+dathost:
+  auth:
+    username:
+    password:
+    rcon:
+  host: https://dathost.net/api/0.1/
+  servers: game-servers
+  matches: matches
+logging:
+  level:
+    root: INFO
+
+

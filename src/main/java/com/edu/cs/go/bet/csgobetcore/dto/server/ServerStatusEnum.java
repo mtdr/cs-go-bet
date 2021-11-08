@@ -7,8 +7,8 @@ import lombok.Getter;
 @Getter
 public enum ServerStatusEnum {
 
-    SERVER_STARTED("server_started"),
-    SERVER_STOPPED("server_stopped");
+    SERVER_START("start"),
+    SERVER_STOP("stop");
 
     private final String value;
 

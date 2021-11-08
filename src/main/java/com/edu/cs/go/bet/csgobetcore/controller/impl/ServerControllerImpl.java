@@ -7,6 +7,7 @@ import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusResponseDto;
 import com.edu.cs.go.bet.csgobetcore.service.ServerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -23,13 +24,13 @@ public class ServerControllerImpl implements ServerController {
 
     @Override
     @PostMapping(SERVER_START)
-    public ServerStatusResponseDto serverStart(ServerStatusRequestDto serverStatusRequestDto) {
+    public ServerStatusResponseDto serverStart(@RequestBody ServerStatusRequestDto serverStatusRequestDto) {
         return serverService.start(serverStatusRequestDto);
     }
 
     @Override
     @PostMapping(SERVER_STOP)
-    public ServerStatusResponseDto serverStop(ServerStatusRequestDto serverStatusRequestDto) {
+    public ServerStatusResponseDto serverStop(@RequestBody ServerStatusRequestDto serverStatusRequestDto) {
         return serverService.stop(serverStatusRequestDto);
     }
 }
