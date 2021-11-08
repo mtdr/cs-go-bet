@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.csgobetcore.configuration;
+package com.edu.cs.go.bet.server.configuration;
 
 import lombok.Data;
 

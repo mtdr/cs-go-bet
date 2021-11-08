@@ -1,12 +1,12 @@
-package com.edu.cs.go.bet.csgobetcore.service.impl;
+package com.edu.cs.go.bet.server.service.impl;
 
-import com.edu.cs.go.bet.csgobetcore.configuration.AuthDatHostConfigurationProperties;
-import com.edu.cs.go.bet.csgobetcore.configuration.DatHostConfigurationProperties;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerDto;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusEnum;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusRequestDto;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusResponseDto;
-import com.edu.cs.go.bet.csgobetcore.service.ServerService;
+import com.edu.cs.go.bet.server.configuration.AuthDatHostConfigurationProperties;
+import com.edu.cs.go.bet.server.configuration.DatHostConfigurationProperties;
+import com.edu.cs.go.bet.server.dto.server.ServerDto;
+import com.edu.cs.go.bet.server.dto.server.ServerStatusEnum;
+import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
+import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
+import com.edu.cs.go.bet.server.service.ServerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;

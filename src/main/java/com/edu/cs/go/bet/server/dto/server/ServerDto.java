@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.csgobetcore.dto.server;
+package com.edu.cs.go.bet.server.dto.server;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ServerStatusRequestDto {
+public class ServerDto {
+
     private String id;
+
+    private String name;
 }

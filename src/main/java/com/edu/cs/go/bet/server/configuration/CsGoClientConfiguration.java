@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.csgobetcore.configuration;
+package com.edu.cs.go.bet.server.configuration;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;

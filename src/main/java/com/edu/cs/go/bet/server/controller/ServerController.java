@@ -1,8 +1,8 @@
-package com.edu.cs.go.bet.csgobetcore.controller;
+package com.edu.cs.go.bet.server.controller;
 
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerDto;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusRequestDto;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusResponseDto;
+import com.edu.cs.go.bet.server.dto.server.ServerDto;
+import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
+import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
 
 public interface ServerController {
     String BASE_PATH = "/api/server";

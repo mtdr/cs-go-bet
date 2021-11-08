@@ -1,6 +1,6 @@
-package com.edu.cs.go.bet.csgobetcore.controller.impl;
+package com.edu.cs.go.bet.server.controller.impl;
 
-import com.edu.cs.go.bet.csgobetcore.controller.MatchController;
+import com.edu.cs.go.bet.server.controller.MatchController;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 

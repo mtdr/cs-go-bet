@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.csgobetcore.controller;
+package com.edu.cs.go.bet.server.controller;
 
 public interface MatchController {
     String BASE_PATH = "/api";

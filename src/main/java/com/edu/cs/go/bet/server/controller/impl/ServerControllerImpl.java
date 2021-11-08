@@ -1,10 +1,10 @@
-package com.edu.cs.go.bet.csgobetcore.controller.impl;
+package com.edu.cs.go.bet.server.controller.impl;
 
-import com.edu.cs.go.bet.csgobetcore.controller.ServerController;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerDto;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusRequestDto;
-import com.edu.cs.go.bet.csgobetcore.dto.server.ServerStatusResponseDto;
-import com.edu.cs.go.bet.csgobetcore.service.ServerService;
+import com.edu.cs.go.bet.server.controller.ServerController;
+import com.edu.cs.go.bet.server.dto.server.ServerDto;
+import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
+import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
+import com.edu.cs.go.bet.server.service.ServerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
