@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RequiredArgsConstructor
@@ -66,6 +67,12 @@ public class ServerServiceImpl implements ServerService {
 
         var request = new HttpEntity<>(headers);
         var response = restTemplate.postForEntity(startServerUrl, request, ServerStatusResponseDto.class);
+        var res = ServerStatusResponseDto.builder().id(id).build();
+        if (response.getStatusCode().is2xxSuccessful()) {
+            res.setStatus(status);
+        } else {
+            res.setStatus(Arrays.stream(ServerStatusEnum.values()).filter(s -> !s.equals(status)).findFirst().orElse(null));
+        }
         return response.getBody();
     }
 }

@@ -10,4 +10,6 @@ public class DatHostConfigurationProperties {
 
     private String matches;
 
+    private String connectLink;
+
 }

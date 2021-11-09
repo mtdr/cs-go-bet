@@ -1,8 +1,11 @@
 package com.edu.cs.go.bet.server.controller;
 
-public interface MatchController {
-    String BASE_PATH = "/api";
-    String MATCH_CREATE = BASE_PATH + "/match/create";
+import com.edu.cs.go.bet.server.dto.match.CreateMatchRequestDto;
+import com.edu.cs.go.bet.server.dto.match.CreateMatchResponseDto;
 
-    String matchCreate();
+public interface MatchController {
+    String BASE_PATH = "/api/match";
+    String MATCH_CREATE = BASE_PATH + "/create";
+
+    CreateMatchResponseDto matchCreate(CreateMatchRequestDto request);
 }
