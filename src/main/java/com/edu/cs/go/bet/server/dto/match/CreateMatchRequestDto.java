@@ -16,5 +16,7 @@ public class CreateMatchRequestDto {
 
     private String mapId;
 
-    private List<String> usernames;
+    private List<String> usernamesTeamA;
+
+    private List<String> usernamesTeamB;
 }
