@@ -18,6 +18,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.edu.cs.go.bet</groupId>
+            <artifactId>csgo-bet-dathost-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
