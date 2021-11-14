@@ -23,5 +23,4 @@
         <java.version>11</java.version>
         <openapi-generator-maven-plugin.version>5.0.0</openapi-generator-maven-plugin.version>
     </properties>
-
 </project>
