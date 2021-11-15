@@ -8,7 +8,8 @@
 #
 FROM maven:3.6.0-jdk-11-slim AS build
 COPY ../ /home/app
-RUN mvn -f /home/app/pom.xml clean package
+RUN mvn -f /home/app/pom.xml clean package && ls
+
 
 #
 # Package stage
@@ -20,6 +21,6 @@ RUN mvn -f /home/app/pom.xml clean package
 
 FROM adoptopenjdk:11-jre-hotspot
 ARG JAR_FILE=*.jar
-COPY /home/app/target/${JAR_FILE} application.jar
+COPY /home/app/_contributing/target/${JAR_FILE} application.jar
 EXPOSE 8085
 ENTRYPOINT ["java", "-jar", "application.jar"]
