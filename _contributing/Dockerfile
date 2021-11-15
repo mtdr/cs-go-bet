@@ -21,6 +21,6 @@ RUN mvn -f /home/app/pom.xml clean package && ls
 
 FROM adoptopenjdk:11-jre-hotspot
 ARG JAR_FILE=*.jar
-COPY /home/app/_contributing/target/${JAR_FILE} application.jar
+COPY /home/app/_contributing/csgo-bet-server/target/${JAR_FILE} application.jar
 EXPOSE 8085
 ENTRYPOINT ["java", "-jar", "application.jar"]
