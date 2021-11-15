@@ -55,4 +55,7 @@ public class MatchServiceImpl implements MatchService {
         headers.setBasicAuth(authDatHostConfigurationProperties.getUsername(), authDatHostConfigurationProperties.getPassword());
         return headers;
     }
+
+    private void test() {
+    }
 }
