@@ -6,9 +6,11 @@
 #
 # Build stage
 #
+
 FROM maven:3.6.0-jdk-11-slim AS builder
-COPY ../ /home/app
-RUN mvn -f /home/app/pom.xml clean package && ls
+WORKDIR /opt/cs-go-bet
+COPY ../ /.
+RUN mvn -f ./pom.xml clean package && ls
 
 
 #
@@ -21,6 +23,6 @@ RUN mvn -f /home/app/pom.xml clean package && ls
 
 FROM adoptopenjdk:11-jre-hotspot
 ARG JAR_FILE=*.jar
-COPY --from=builder /home/app/_contributing/csgo-bet-server/target/${JAR_FILE} application.jar
+COPY --from=builder /opt/cs-go-bet/_contributing/csgo-bet-server/target/${JAR_FILE} application.jar
 EXPOSE 8085
 ENTRYPOINT ["java", "-jar", "application.jar"]
