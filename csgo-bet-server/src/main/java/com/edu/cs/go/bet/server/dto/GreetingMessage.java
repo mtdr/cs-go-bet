@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class WebSocketMessageDto {
-    private String msg;
+public class GreetingMessage {
+    private String content;
 }
