@@ -1,5 +1,6 @@
 {
   "swagger": "2.0",
+  "x-group-parameters": true,
   "produces": [
     "application/json"
   ],
@@ -14,7 +15,7 @@
   "tags": [
     {
       "description": "Default namespace",
-      "name": "default"
+      "name": "DatHost"
     }
   ],
   "basePath": "/",
@@ -949,8 +950,9 @@
         },
         "summary": "Get info about the account",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/custom-domains": {
@@ -977,8 +979,9 @@
           }
         },
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers": {
@@ -1007,8 +1010,9 @@
         },
         "summary": "Get a list of all non-deleted gameservers",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "post": {
         "consumes": [
@@ -3262,8 +3266,9 @@
         },
         "summary": "Create server",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}": {
@@ -3279,8 +3284,9 @@
         },
         "summary": "Delete a server",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "get": {
         "description": "If the server is currently in the booting state it will also check if the server           is still booting and update the value before returning",
@@ -3307,8 +3313,9 @@
         },
         "summary": "Get all info about one gameserver",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
@@ -5556,8 +5563,9 @@
         },
         "summary": "Update server details",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/backups": {
@@ -5588,8 +5596,9 @@
         },
         "summary": "List all available backups for this server",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
@@ -5628,8 +5637,9 @@
         },
         "summary": "Restore all files from a backup",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/console": {
@@ -5661,8 +5671,9 @@
         },
         "summary": "Get the last lines of backlog from the server console",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
@@ -5697,8 +5708,9 @@
         },
         "summary": "Send a line of text to the server console",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/duplicate": {
@@ -5735,8 +5747,9 @@
         },
         "summary": "Duplicate a server (copies settings and files to a new server)",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/files": {
@@ -5778,8 +5791,9 @@
         },
         "summary": "List files on gameserver",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
@@ -5804,8 +5818,9 @@
         },
         "summary": "Delete a file/directory from the gameserver",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "get": {
         "description": "The path is counted from the root node as seen in the file manager in the control panel,\ni.e. to retrieve csgo/cfg/server.cfg the path would be cfg/server.cfg\n\nIf the path is a directory you will receive a zip file with the directory's contents\n\nNote that files are retrieved from an API cache which is synced periodically\n(approximately once per minute) from the gameserver, to make sure all files\non the server is retrieveble, run /game-servers/{server_id}/sync-files first.",
@@ -5828,8 +5843,9 @@
         },
         "summary": "Download a file from the gameserver",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
@@ -5875,8 +5891,9 @@
         },
         "summary": "Upload a file to the gameserver",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "put": {
         "consumes": [
@@ -5907,8 +5924,9 @@
         },
         "summary": "Move a file/directory on the gameserver",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/metrics": {
@@ -5932,8 +5950,9 @@
           }
         },
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
@@ -5966,8 +5985,9 @@
         },
         "summary": "Generate a new FTP password",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/reset": {
@@ -5992,8 +6012,9 @@
         },
         "summary": "Reset all file changes and settings",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/start": {
@@ -6033,8 +6054,9 @@
         },
         "summary": "Start a server",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/stop": {
@@ -6058,8 +6080,9 @@
         },
         "summary": "Stop a server",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/sync-files": {
@@ -6084,8 +6107,9 @@
         },
         "summary": "Sync the files between the API cache and the gameserver",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/game-servers/{server_id}/unzip/{path}": {
@@ -6131,8 +6155,9 @@
         },
         "summary": "Unzip a file on the GameServer",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/match-series": {
@@ -6444,8 +6469,9 @@
         },
         "summary": "Start a match series (best of 2, best of 3, best of 5)",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/match-series/{match_series_id}": {
@@ -6473,8 +6499,9 @@
         },
         "summary": "Get all info about one match series",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
@@ -6687,8 +6714,9 @@
         },
         "summary": "Start a match",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       }
     },
     "/api/0.1/matches/{match_id}": {
@@ -6716,8 +6744,9 @@
         },
         "summary": "Get all info about one match",
         "tags": [
-          "default"
-        ]
+          "DatHost"
+        ],
+        "x-group-parameters": true
       },
       "parameters": [
         {
