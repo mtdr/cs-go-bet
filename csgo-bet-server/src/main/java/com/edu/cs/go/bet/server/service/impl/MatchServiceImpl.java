@@ -1,6 +1,5 @@
 package com.edu.cs.go.bet.server.service.impl;
 
-import com.edu.cs.go.bet.dathost.client.api.DatHostApi;
 import com.edu.cs.go.bet.server.configuration.AuthDatHostConfigurationProperties;
 import com.edu.cs.go.bet.server.configuration.DatHostConfigurationProperties;
 import com.edu.cs.go.bet.server.dto.match.CreateMatchRequestDto;
@@ -23,7 +22,6 @@ public class MatchServiceImpl implements MatchService {
     private final RestTemplate restTemplate;
     private final DatHostConfigurationProperties datHostConfigurationProperties;
     private final AuthDatHostConfigurationProperties authDatHostConfigurationProperties;
-    private final DatHostApi datHostApi;
 
     @Override
     public CreateMatchResponseDto create(CreateMatchRequestDto requestDto) {
