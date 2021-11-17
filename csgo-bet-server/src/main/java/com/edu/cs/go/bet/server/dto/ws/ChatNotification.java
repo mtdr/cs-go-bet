@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.server.dto;
+package com.edu.cs.go.bet.server.dto.ws;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class HelloMessage {
-    private String name;
+public class ChatNotification {
+    private String id;
+    private String senderId;
+    private String senderName;
 }

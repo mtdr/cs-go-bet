@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.server.dto;
+package com.edu.cs.go.bet.server.dto.ws;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

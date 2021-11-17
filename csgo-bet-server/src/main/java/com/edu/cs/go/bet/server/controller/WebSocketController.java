@@ -1,8 +1,8 @@
 package com.edu.cs.go.bet.server.controller;
 
-import com.edu.cs.go.bet.server.dto.GreetingMessage;
-import com.edu.cs.go.bet.server.dto.HelloMessage;
+import com.edu.cs.go.bet.server.dto.ws.ChatMessage;
+import org.springframework.messaging.handler.annotation.Payload;
 
 public interface WebSocketController {
-    GreetingMessage send(HelloMessage msg);
+    void send(@Payload ChatMessage chatMessage);
 }
