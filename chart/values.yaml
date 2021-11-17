@@ -5,7 +5,7 @@
 replicaCount: 1
 
 image:
-  repository: cr.yandex/crpo7u2hcjd8o0fvme6l/mtdr/cs-go-bet:master
+  repository: cr.yandex/crpo7u2hcjd8o0fvme6l/mtdr/cs-go-bet:dev
   pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
