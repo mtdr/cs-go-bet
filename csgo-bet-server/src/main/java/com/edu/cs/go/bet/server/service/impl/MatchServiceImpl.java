@@ -1,27 +1,31 @@
 package com.edu.cs.go.bet.server.service.impl;
 
+import com.edu.cs.go.bet.dathost.client.ApiException;
+import com.edu.cs.go.bet.dathost.client.api.DatHostApi;
+import com.edu.cs.go.bet.dathost.client.model.Match;
 import com.edu.cs.go.bet.server.configuration.AuthDatHostConfigurationProperties;
 import com.edu.cs.go.bet.server.configuration.DatHostConfigurationProperties;
 import com.edu.cs.go.bet.server.dto.match.CreateMatchRequestDto;
 import com.edu.cs.go.bet.server.dto.match.CreateMatchResponseDto;
 import com.edu.cs.go.bet.server.service.MatchService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class MatchServiceImpl implements MatchService {
 
     private final RestTemplate restTemplate;
     private final DatHostConfigurationProperties datHostConfigurationProperties;
     private final AuthDatHostConfigurationProperties authDatHostConfigurationProperties;
+    private final DatHostApi datHostApi;
 
     @Override
     public CreateMatchResponseDto create(CreateMatchRequestDto requestDto) {
@@ -29,26 +33,45 @@ public class MatchServiceImpl implements MatchService {
 
         var headers = getAuthFormHeaders();
 
-        LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("game_server_id", requestDto.getServerId());
-        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamA())) {
-            map.add("team1_steam_ids", String.join(",", requestDto.getUsernamesTeamA()));
-        }
-        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamB())) {
-            map.add("team2_steam_ids", String.join(",", requestDto.getUsernamesTeamB()));
-        }
-        if (StringUtils.hasLength(requestDto.getMapId())) {
-            map.add("map", requestDto.getMapId());
+//        LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+//        map.add("game_server_id", requestDto.getServerId());
+//        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamA())) {
+//            map.add("team1_steam_ids", String.join(",", requestDto.getUsernamesTeamA()));
+//        }
+//        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamB())) {
+//            map.add("team2_steam_ids", String.join(",", requestDto.getUsernamesTeamB()));
+//        }
+//        if (StringUtils.hasLength(requestDto.getMapId())) {
+//            map.add("map", requestDto.getMapId());
+//        }
+
+        Match result = null;
+        try {
+            var request = datHostApi.postMatches()
+                    .gameServerId(requestDto.getServerId());
+
+            if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamA())) {
+                request.team1SteamIds(String.join(",", requestDto.getUsernamesTeamA()));
+            }
+            if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamB())) {
+                request.team2SteamIds(String.join(",", requestDto.getUsernamesTeamB()));
+            }
+            if (StringUtils.hasLength(requestDto.getMapId())) {
+                request.map(requestDto.getMapId());
+            }
+            result = request.execute();
+
+        } catch (ApiException e) {
+            log.error(e.getMessage(), e);
         }
 
-//        var res = datHostApi.postMatches(null);
-
-        var request = new HttpEntity<>(map, headers);
-        var response = restTemplate.postForEntity(createServerUrl, request, CreateMatchResponseDto.class);
-        if (response.getStatusCode().is2xxSuccessful() && response.getBody() != null) {
-            response.getBody().setConnectLink(datHostConfigurationProperties.getConnectLink());
+        if (result == null) {
+            return CreateMatchResponseDto.builder().build();
         }
-        return response.getBody();
+
+        return CreateMatchResponseDto.builder().connectLink(datHostConfigurationProperties.getConnectLink())
+                .id(result.getId())
+                .build();
     }
 
     private HttpHeaders getAuthFormHeaders() {

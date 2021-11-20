@@ -150,12 +150,13 @@
           "type": "number"
         },
         "csgo_settings": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/csgo_settings"
             }
           ],
-          "description": "(CS:GO only) Settings specific to CS:GO"
+          "description": "(CS:GO only) Settings specific to CS:GO",
+          "type": "array"
         },
         "custom_domain": {
           "description": "Use a custom domain for the server",
@@ -253,7 +254,7 @@
           "type": "integer"
         },
         "mumble_settings": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/mumble_settings"
             }
@@ -329,7 +330,7 @@
           "type": "integer"
         },
         "teamfortress2_settings": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/teamfortress2_settings"
             }
@@ -337,7 +338,7 @@
           "description": "(Team Fortress 2 only) Settings specific to teamfortress2"
         },
         "teamspeak3_settings": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/teamspeak3_settings"
             }
@@ -349,7 +350,7 @@
           "type": "string"
         },
         "valheim_settings": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/valheim_settings"
             }
@@ -389,7 +390,8 @@
         "subscription_renewal_failed_attempts",
         "user_data"
       ],
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false
     },
     "GraphPoint": {
       "properties": {
@@ -424,7 +426,8 @@
           "type": "integer"
         }
       },
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false
     },
     "Match": {
       "properties": {
@@ -553,7 +556,8 @@
           "type": "integer"
         }
       },
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false
     },
     "MatchPlayerStats": {
       "properties": {
@@ -617,7 +621,7 @@
     "Metrics": {
       "properties": {
         "all_time_players": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/Player"
             }
@@ -625,28 +629,31 @@
           "description": "All time players stats"
         },
         "maps_played": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/MapsPlayed"
             }
           ],
-          "description": "Maps played"
+          "description": "Maps played",
+          "type": "array"
         },
         "players_online": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/Player"
             }
           ],
-          "description": "Current players online"
+          "description": "Current players online",
+          "type": "array"
         },
         "players_online_graph": {
-          "allOf": [
+          "items": [
             {
               "$ref": "#/definitions/GraphPoint"
             }
           ],
-          "description": "Players online graph"
+          "description": "Players online graph",
+          "type": "array"
         }
       },
       "type": "object"
@@ -666,7 +673,8 @@
           "type": "integer"
         }
       },
-      "type": "object"
+      "type": "object",
+      "additionalProperties": false
     },
     "Ports": {
       "properties": {
