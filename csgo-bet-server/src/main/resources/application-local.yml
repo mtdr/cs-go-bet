@@ -1,6 +1,6 @@
 dathost:
   auth:
-    username: paul.osmolovsky@gmail.com
-    password: darthweider1488
-    rcon: dartweider1488
+    username:
+    password:
+    rcon:
   connect-link: steam://connect/payplay.datho.st:28182/dartweider1488
