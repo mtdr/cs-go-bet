@@ -29,22 +29,6 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public CreateMatchResponseDto create(CreateMatchRequestDto requestDto) {
-        var createServerUrl = datHostConfigurationProperties.getHost() + datHostConfigurationProperties.getMatches();
-
-        var headers = getAuthFormHeaders();
-
-//        LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-//        map.add("game_server_id", requestDto.getServerId());
-//        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamA())) {
-//            map.add("team1_steam_ids", String.join(",", requestDto.getUsernamesTeamA()));
-//        }
-//        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamB())) {
-//            map.add("team2_steam_ids", String.join(",", requestDto.getUsernamesTeamB()));
-//        }
-//        if (StringUtils.hasLength(requestDto.getMapId())) {
-//            map.add("map", requestDto.getMapId());
-//        }
-
         Match result = null;
         try {
             var request = datHostApi.postMatches()
@@ -79,8 +63,5 @@ public class MatchServiceImpl implements MatchService {
         headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
         headers.setBasicAuth(authDatHostConfigurationProperties.getUsername(), authDatHostConfigurationProperties.getPassword());
         return headers;
-    }
-
-    private void test() {
     }
 }
