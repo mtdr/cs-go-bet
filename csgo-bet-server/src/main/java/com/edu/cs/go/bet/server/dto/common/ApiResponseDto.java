@@ -32,8 +32,20 @@ public class ApiResponseDto<T> {
         return ApiResponseDto.<T>builder().status(HttpStatus.BAD_REQUEST).errors(List.of(ApiResponseError.builder().code(ApiResponseErrorCode.VALIDATION_FAILED).build()));
     }
 
+    public static <T> ApiResponseDtoBuilder<T> badRequestError(String msg) {
+        return ApiResponseDto.<T>builder().status(HttpStatus.BAD_REQUEST).errors(List.of(ApiResponseError.builder().code(ApiResponseErrorCode.VALIDATION_FAILED).message(msg).build()));
+    }
+
     public static <T> ApiResponseDtoBuilder<T> notFoundError() {
         return ApiResponseDto.<T>builder().status(HttpStatus.NOT_FOUND).errors(List.of(ApiResponseError.builder().code(ApiResponseErrorCode.NOT_FOUND).build()));
+    }
+
+    public static <T> ApiResponseDtoBuilder<T> internalError() {
+        return ApiResponseDto.<T>builder().status(HttpStatus.INTERNAL_SERVER_ERROR).errors(List.of(ApiResponseError.builder().code(ApiResponseErrorCode.INTERNAL).build()));
+    }
+
+    public static <T> ApiResponseDtoBuilder<T> internalError(String msg) {
+        return ApiResponseDto.<T>builder().status(HttpStatus.INTERNAL_SERVER_ERROR).errors(List.of(ApiResponseError.builder().code(ApiResponseErrorCode.INTERNAL).message(msg).build()));
     }
 
 }

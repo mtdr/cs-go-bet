@@ -28,26 +28,21 @@ public class MatchServiceImpl implements MatchService {
     private final DatHostApi datHostApi;
 
     @Override
-    public CreateMatchResponseDto create(CreateMatchRequestDto requestDto) {
+    public CreateMatchResponseDto create(CreateMatchRequestDto requestDto) throws ApiException {
         Match result = null;
-        try {
-            var request = datHostApi.postMatches()
-                    .gameServerId(requestDto.getServerId());
+        var request = datHostApi.postMatches()
+                .gameServerId(requestDto.getServerId());
 
-            if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamA())) {
-                request.team1SteamIds(String.join(",", requestDto.getUsernamesTeamA()));
-            }
-            if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamB())) {
-                request.team2SteamIds(String.join(",", requestDto.getUsernamesTeamB()));
-            }
-            if (StringUtils.hasLength(requestDto.getMapId())) {
-                request.map(requestDto.getMapId());
-            }
-            result = request.execute();
-
-        } catch (ApiException e) {
-            log.error(e.getMessage(), e);
+        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamA())) {
+            request.team1SteamIds(String.join(",", requestDto.getUsernamesTeamA()));
         }
+        if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamB())) {
+            request.team2SteamIds(String.join(",", requestDto.getUsernamesTeamB()));
+        }
+        if (StringUtils.hasLength(requestDto.getMapId())) {
+            request.map(requestDto.getMapId());
+        }
+        result = request.execute();
 
         if (result == null) {
             return CreateMatchResponseDto.builder().build();
