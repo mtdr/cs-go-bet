@@ -1,5 +1,7 @@
 package com.edu.cs.go.bet.server.service.impl;
 
+import com.edu.cs.go.bet.dathost.client.ApiException;
+import com.edu.cs.go.bet.dathost.client.api.DatHostApi;
 import com.edu.cs.go.bet.server.configuration.AuthDatHostConfigurationProperties;
 import com.edu.cs.go.bet.server.configuration.DatHostConfigurationProperties;
 import com.edu.cs.go.bet.server.dto.server.ServerDto;
@@ -8,14 +10,8 @@ import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
 import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
 import com.edu.cs.go.bet.server.service.ServerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicLong;
 
 @RequiredArgsConstructor
@@ -24,55 +20,36 @@ public class ServerServiceImpl implements ServerService {
 
     private static final AtomicLong SEQ = new AtomicLong(System.currentTimeMillis());
 
-    private final RestTemplate restTemplate;
     private final DatHostConfigurationProperties datHostConfigurationProperties;
     private final AuthDatHostConfigurationProperties authDatHostConfigurationProperties;
+    private final DatHostApi datHostApi;
 
     @Override
-    public ServerDto create() {
-        var createServerUrl = datHostConfigurationProperties.getHost() + datHostConfigurationProperties.getServers();
+    public ServerDto create() throws ApiException {
+        var name = String.valueOf(SEQ.incrementAndGet());
+        var request = datHostApi.postGameServers()
+                .game("csgo")
+                .name(name)
+                .csgoSettingsRcon(authDatHostConfigurationProperties.getRcon());
 
-        var headers = getAuthFormHeaders();
-
-        LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
-        map.add("game", "csgo");
-        map.add("name", String.valueOf(SEQ.incrementAndGet()));
-        map.add("csgo_settings.rcon", authDatHostConfigurationProperties.getRcon());
-        var request = new HttpEntity<>(map, headers);
-        var response = restTemplate.postForEntity(createServerUrl, request, ServerDto.class);
-        return response.getBody();
-    }
-
-    @Override
-    public ServerStatusResponseDto start(ServerStatusRequestDto serverStatusRequestDto) {
-        return changeServerStatus(serverStatusRequestDto.getId(), ServerStatusEnum.SERVER_START);
-    }
-
-    @Override
-    public ServerStatusResponseDto stop(ServerStatusRequestDto serverStatusRequestDto) {
-        return changeServerStatus(serverStatusRequestDto.getId(), ServerStatusEnum.SERVER_STOP);
-    }
-
-    private HttpHeaders getAuthFormHeaders() {
-        var headers = new HttpHeaders();
-        headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
-        headers.setBasicAuth(authDatHostConfigurationProperties.getUsername(), authDatHostConfigurationProperties.getPassword());
-        return headers;
-    }
-
-    private ServerStatusResponseDto changeServerStatus(String id, ServerStatusEnum status) {
-        var startServerUrl = datHostConfigurationProperties.getHost() + datHostConfigurationProperties.getServers() + "/" + id + "/" + status.getValue();
-
-        var headers = getAuthFormHeaders();
-
-        var request = new HttpEntity<>(headers);
-        var response = restTemplate.postForEntity(startServerUrl, request, ServerStatusResponseDto.class);
-        var res = ServerStatusResponseDto.builder().id(id).build();
-        if (response.getStatusCode().is2xxSuccessful()) {
-            res.setStatus(status);
-        } else {
-            res.setStatus(Arrays.stream(ServerStatusEnum.values()).filter(s -> !s.equals(status)).findFirst().orElse(null));
+        var response = request.executeWithHttpInfo();
+        if (response.getStatusCode() != 200) {
+            throw new ApiException(response.getStatusCode(), "Error while creating server");
         }
-        return response.getBody();
+        var connectLink = datHostConfigurationProperties.getConnectLink();
+        return ServerDto.builder().connectLink(connectLink).name(name).build();
     }
+
+    @Override
+    public ServerStatusResponseDto start(ServerStatusRequestDto serverStatusRequestDto) throws ApiException {
+        var res = datHostApi.postGameServerStart(serverStatusRequestDto.getId()).executeWithHttpInfo();
+        return ServerStatusResponseDto.builder().status(ServerStatusEnum.SERVER_START).build();
+    }
+
+    @Override
+    public ServerStatusResponseDto stop(ServerStatusRequestDto serverStatusRequestDto) throws ApiException {
+        var res = datHostApi.postGameServerStop(serverStatusRequestDto.getId()).executeWithHttpInfo();
+        return ServerStatusResponseDto.builder().status(ServerStatusEnum.SERVER_STOP).build();
+    }
+
 }
