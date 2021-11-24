@@ -1,6 +1,8 @@
 package com.edu.cs.go.bet.server.controller.impl;
 
+import com.edu.cs.go.bet.dathost.client.ApiException;
 import com.edu.cs.go.bet.server.controller.MatchController;
+import com.edu.cs.go.bet.server.dto.common.ApiResponseDto;
 import com.edu.cs.go.bet.server.dto.match.CreateMatchRequestDto;
 import com.edu.cs.go.bet.server.dto.match.CreateMatchResponseDto;
 import com.edu.cs.go.bet.server.service.MatchService;
@@ -17,7 +19,7 @@ public class MatchControllerImpl implements MatchController {
 
     @Override
     @PostMapping(MATCH_CREATE)
-    public CreateMatchResponseDto matchCreate(@RequestBody CreateMatchRequestDto request) {
-        return service.create(request);
+    public ApiResponseDto<CreateMatchResponseDto> create(@RequestBody CreateMatchRequestDto request) throws ApiException {
+        return ApiResponseDto.success(service.create(request)).build();
     }
 }

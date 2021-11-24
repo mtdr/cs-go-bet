@@ -1,5 +1,7 @@
 package com.edu.cs.go.bet.server.controller;
 
+import com.edu.cs.go.bet.dathost.client.ApiException;
+import com.edu.cs.go.bet.server.dto.common.ApiResponseDto;
 import com.edu.cs.go.bet.server.dto.server.ServerDto;
 import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
 import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
@@ -10,9 +12,9 @@ public interface ServerController {
     String SERVER_START = BASE_PATH + "/start";
     String SERVER_STOP = BASE_PATH + "/stop";
 
-    ServerDto serverCreate();
+    ApiResponseDto<ServerDto> serverCreate() throws ApiException;
 
-    ServerStatusResponseDto serverStart(ServerStatusRequestDto serverStatusRequestDto);
+    ApiResponseDto<ServerStatusResponseDto> serverStart(ServerStatusRequestDto serverStatusRequestDto) throws ApiException;
 
-    ServerStatusResponseDto serverStop(ServerStatusRequestDto serverStatusRequestDto);
+    ApiResponseDto<ServerStatusResponseDto> serverStop(ServerStatusRequestDto serverStatusRequestDto) throws ApiException;
 }

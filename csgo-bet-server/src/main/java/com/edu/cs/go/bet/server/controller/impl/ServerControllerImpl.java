@@ -1,6 +1,8 @@
 package com.edu.cs.go.bet.server.controller.impl;
 
+import com.edu.cs.go.bet.dathost.client.ApiException;
 import com.edu.cs.go.bet.server.controller.ServerController;
+import com.edu.cs.go.bet.server.dto.common.ApiResponseDto;
 import com.edu.cs.go.bet.server.dto.server.ServerDto;
 import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
 import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
@@ -18,19 +20,19 @@ public class ServerControllerImpl implements ServerController {
 
     @Override
     @PostMapping(SERVER_CREATE)
-    public ServerDto serverCreate() {
-        return serverService.create();
+    public ApiResponseDto<ServerDto> serverCreate() throws ApiException {
+        return ApiResponseDto.success(serverService.create()).build();
     }
 
     @Override
     @PostMapping(SERVER_START)
-    public ServerStatusResponseDto serverStart(@RequestBody ServerStatusRequestDto serverStatusRequestDto) {
-        return serverService.start(serverStatusRequestDto);
+    public ApiResponseDto<ServerStatusResponseDto> serverStart(@RequestBody ServerStatusRequestDto serverStatusRequestDto) throws ApiException {
+        return ApiResponseDto.success(serverService.start(serverStatusRequestDto)).build();
     }
 
     @Override
     @PostMapping(SERVER_STOP)
-    public ServerStatusResponseDto serverStop(@RequestBody ServerStatusRequestDto serverStatusRequestDto) {
-        return serverService.stop(serverStatusRequestDto);
+    public ApiResponseDto<ServerStatusResponseDto> serverStop(@RequestBody ServerStatusRequestDto serverStatusRequestDto) throws ApiException {
+        return ApiResponseDto.success(serverService.stop(serverStatusRequestDto)).build();
     }
 }
