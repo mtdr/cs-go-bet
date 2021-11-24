@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.server.handler;
+package com.edu.cs.go.bet.server.handling;
 
 import com.edu.cs.go.bet.dathost.client.ApiException;
 import com.edu.cs.go.bet.server.dto.common.ApiResponseDto;
@@ -22,6 +22,12 @@ public class ApiResponseExceptionHandler {
     public ResponseEntity<ApiResponseDto<?>> handleApi(ApiException ex) {
         log.error("An exception handled: {}", ex.getMessage());
         return ResponseEntity.badRequest().body(ApiResponseDto.badRequestError(ex.getMessage()).build());
+    }
+
+    @ExceptionHandler(NotFoundException.class)
+    public ResponseEntity<ApiResponseDto<?>> handleNotFound(NotFoundException ex) {
+        log.error("An exception handled: {}", ex.getMessage());
+        return ResponseEntity.notFound().build();
     }
 
     @ExceptionHandler(Exception.class)
