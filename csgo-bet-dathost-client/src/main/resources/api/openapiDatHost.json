@@ -18,6 +18,15 @@
       "name": "DatHost"
     }
   ],
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "securityDefinitions": {
+    "Basic": {
+      "type": "basic"
+    }
+  },
   "basePath": "/",
   "consumes": [
     "application/json"
@@ -6522,6 +6531,13 @@
     },
     "/api/0.1/matches": {
       "post": {
+        "security": [
+          {
+            "type": [
+              "Basic"
+            ]
+          }
+        ],
         "consumes": [
           "application/x-www-form-urlencoded",
           "multipart/form-data"

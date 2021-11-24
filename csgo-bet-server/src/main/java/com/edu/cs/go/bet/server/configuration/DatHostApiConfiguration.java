@@ -2,12 +2,10 @@ package com.edu.cs.go.bet.server.configuration;
 
 import com.edu.cs.go.bet.dathost.client.ApiClient;
 import com.edu.cs.go.bet.dathost.client.api.DatHostApi;
-import com.edu.cs.go.bet.dathost.client.auth.HttpBasicAuth;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.Map;
+import org.springframework.http.HttpHeaders;
 
 @RequiredArgsConstructor
 @Configuration
@@ -17,11 +15,9 @@ public class DatHostApiConfiguration {
 
     @Bean
     public ApiClient apiClient() {
-        var auth = new HttpBasicAuth();
-        auth.setUsername(authProperties.getUsername());
-        auth.setPassword(authProperties.getPassword());
-        var client = new ApiClient(Map.of("base", auth));
+        var client = new ApiClient();
         client.setBasePath(client.getBasePath().replace("http", "https"));
+        client.addDefaultHeader("Authorization", "Basic " + HttpHeaders.encodeBasicAuth(authProperties.getUsername(), authProperties.getPassword(), null));
         return client;
     }
 
