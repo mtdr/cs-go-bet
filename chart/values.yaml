@@ -42,8 +42,10 @@ securityContext:
 
 service:
   # type: ClusterIP
-  type: NodePort
-  port: 8085
+  # type: NodePort
+  type: LoadBalancer
+  port: 80
+  targetPort: 8085
 
 ingress:
   enabled: false
