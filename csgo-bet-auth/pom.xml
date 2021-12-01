@@ -8,7 +8,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>cs-go-bet-auth</artifactId>
+    <artifactId>csgo-bet-auth</artifactId>
 
     <properties>
         <spring-cloud.version>Greenwich.M1</spring-cloud.version>

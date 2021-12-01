@@ -17,6 +17,7 @@
     <modules>
         <module>csgo-bet-server</module>
         <module>csgo-bet-dathost-client</module>
+        <module>csgo-bet-auth</module>
     </modules>
 
     <properties>
