@@ -1,8 +1,8 @@
 package com.edu.cs.go.bet.auth.config;
 
 import com.edu.cs.go.bet.auth.model.InstaUserDetails;
-import com.edu.cs.go.bet.auth.service.JwtTokenProvider;
-import com.edu.cs.go.bet.auth.service.UserService;
+import com.edu.cs.go.bet.auth.service.JwtTokenProviderImpl;
+import com.edu.cs.go.bet.auth.service.UserServiceImpl;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,13 +18,13 @@ import java.io.IOException;
 public class JwtTokenAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtConfig jwtConfig;
-    private final JwtTokenProvider tokenProvider;
-    private final UserService userService;
+    private final JwtTokenProviderImpl tokenProvider;
+    private final UserServiceImpl userService;
 
     public JwtTokenAuthenticationFilter(
             JwtConfig jwtConfig,
-            JwtTokenProvider tokenProvider,
-            UserService userService) {
+            JwtTokenProviderImpl tokenProvider,
+            UserServiceImpl userService) {
 
         this.jwtConfig = jwtConfig;
         this.tokenProvider = tokenProvider;

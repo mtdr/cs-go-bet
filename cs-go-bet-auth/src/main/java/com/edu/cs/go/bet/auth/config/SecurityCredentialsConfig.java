@@ -1,8 +1,8 @@
 package com.edu.cs.go.bet.auth.config;
 
 
-import com.edu.cs.go.bet.auth.service.JwtTokenProvider;
-import com.edu.cs.go.bet.auth.service.UserService;
+import com.edu.cs.go.bet.auth.service.JwtTokenProviderImpl;
+import com.edu.cs.go.bet.auth.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
@@ -34,10 +34,10 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
     private JwtConfig jwtConfig;
 
     @Autowired
-    private JwtTokenProvider tokenProvider;
+    private JwtTokenProviderImpl tokenProvider;
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
 
     @Override

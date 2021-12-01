@@ -1,6 +1,7 @@
-package com.edu.cs.go.bet.auth.endpoint;
+package com.edu.cs.go.bet.auth.controller.impl;
 
 
+import com.edu.cs.go.bet.auth.controller.AuthController;
 import com.edu.cs.go.bet.auth.exception.BadRequestException;
 import com.edu.cs.go.bet.auth.exception.EmailAlreadyExistsException;
 import com.edu.cs.go.bet.auth.exception.UsernameAlreadyExistsException;
@@ -8,10 +9,10 @@ import com.edu.cs.go.bet.auth.model.Profile;
 import com.edu.cs.go.bet.auth.model.Role;
 import com.edu.cs.go.bet.auth.model.User;
 import com.edu.cs.go.bet.auth.payload.*;
-import com.edu.cs.go.bet.auth.service.FacebookService;
-import com.edu.cs.go.bet.auth.service.UserService;
+import com.edu.cs.go.bet.auth.service.FacebookServiceImpl;
+import com.edu.cs.go.bet.auth.service.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,12 +25,11 @@ import java.net.URI;
 
 @RestController
 @Slf4j
-public class AuthEndpoint {
+@RequiredArgsConstructor
+public class AuthControllerImpl implements AuthController {
 
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private FacebookService facebookService;
+    private final UserServiceImpl userService;
+    private final FacebookServiceImpl facebookServiceImpl;
 
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
@@ -40,7 +40,7 @@ public class AuthEndpoint {
     @PostMapping("/facebook/signin")
     public ResponseEntity<?> facebookAuth(@Valid @RequestBody FacebookLoginRequest facebookLoginRequest) {
         log.info("facebook login {}", facebookLoginRequest);
-        String token = facebookService.loginUser(facebookLoginRequest.getAccessToken());
+        String token = facebookServiceImpl.loginUser(facebookLoginRequest.getAccessToken());
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
     }
 

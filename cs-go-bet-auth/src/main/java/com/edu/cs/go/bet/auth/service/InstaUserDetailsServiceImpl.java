@@ -1,21 +1,20 @@
 package com.edu.cs.go.bet.auth.service;
 
 import com.edu.cs.go.bet.auth.model.InstaUserDetails;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
-public class InstaUserDetailsService implements UserDetailsService {
+@RequiredArgsConstructor
+public class InstaUserDetailsServiceImpl implements UserDetailsService {
 
-    @Autowired
-    private UserService userService;
+    private final UserServiceImpl userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         return userService
                 .findByUsername(username)
                 .map(InstaUserDetails::new)

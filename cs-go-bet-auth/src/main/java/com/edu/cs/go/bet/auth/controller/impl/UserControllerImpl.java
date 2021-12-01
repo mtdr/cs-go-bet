@@ -1,12 +1,13 @@
-package com.edu.cs.go.bet.auth.endpoint;
+package com.edu.cs.go.bet.auth.controller.impl;
 
+import com.edu.cs.go.bet.auth.controller.UserController;
 import com.edu.cs.go.bet.auth.exception.ResourceNotFoundException;
 import com.edu.cs.go.bet.auth.model.InstaUserDetails;
 import com.edu.cs.go.bet.auth.model.User;
 import com.edu.cs.go.bet.auth.payload.UserSummary;
-import com.edu.cs.go.bet.auth.service.UserService;
+import com.edu.cs.go.bet.auth.service.UserServiceImpl;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Slf4j
-public class UserEndpoint {
+@RequiredArgsConstructor
+public class UserControllerImpl implements UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserServiceImpl userService;
 
     @GetMapping(value = "/users/{username}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<?> findUser(@PathVariable("username") String username) {
@@ -31,7 +32,7 @@ public class UserEndpoint {
 
         return userService
                 .findByUsername(username)
-                .map(user -> ResponseEntity.ok(user))
+                .map(ResponseEntity::ok)
                 .orElseThrow(() -> new ResourceNotFoundException(username));
     }
 
