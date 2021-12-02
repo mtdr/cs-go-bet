@@ -1,8 +1,8 @@
 package com.edu.cs.go.bet.server.service;
 
+import com.edu.cs.go.bet.api.dto.match.CreateMatchRequestDto;
+import com.edu.cs.go.bet.api.dto.match.CreateMatchResponseDto;
 import com.edu.cs.go.bet.dathost.client.ApiException;
-import com.edu.cs.go.bet.server.dto.match.CreateMatchRequestDto;
-import com.edu.cs.go.bet.server.dto.match.CreateMatchResponseDto;
 
 public interface MatchService {
 

@@ -18,6 +18,8 @@
         <module>csgo-bet-server</module>
         <module>csgo-bet-dathost-client</module>
         <module>csgo-bet-auth</module>
+        <module>csgo-bet-match</module>
+        <module>csgo-bet-api</module>
     </modules>
 
     <properties>

@@ -1,7 +1,8 @@
 package com.edu.cs.go.bet.server.handling;
 
+import com.edu.cs.go.bet.api.dto.common.ApiResponseDto;
+import com.edu.cs.go.bet.api.exception.NotFoundException;
 import com.edu.cs.go.bet.dathost.client.ApiException;
-import com.edu.cs.go.bet.server.dto.common.ApiResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.InvalidPropertyException;
 import org.springframework.http.ResponseEntity;

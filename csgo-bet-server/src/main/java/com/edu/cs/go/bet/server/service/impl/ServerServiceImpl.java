@@ -1,13 +1,13 @@
 package com.edu.cs.go.bet.server.service.impl;
 
+import com.edu.cs.go.bet.api.dto.server.ServerDto;
+import com.edu.cs.go.bet.api.dto.server.ServerStatusEnum;
+import com.edu.cs.go.bet.api.dto.server.ServerStatusRequestDto;
+import com.edu.cs.go.bet.api.dto.server.ServerStatusResponseDto;
 import com.edu.cs.go.bet.dathost.client.ApiException;
 import com.edu.cs.go.bet.dathost.client.api.DatHostApi;
 import com.edu.cs.go.bet.server.configuration.AuthDatHostConfigurationProperties;
 import com.edu.cs.go.bet.server.configuration.DatHostConfigurationProperties;
-import com.edu.cs.go.bet.server.dto.server.ServerDto;
-import com.edu.cs.go.bet.server.dto.server.ServerStatusEnum;
-import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
-import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
 import com.edu.cs.go.bet.server.service.ServerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
