@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.match.configureation;
+package com.edu.cs.go.bet.match.configuration;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Configuration;

@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.match.configureation;
+package com.edu.cs.go.bet.match.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
