@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SearchControllerImpl implements SearchController {
 
-    @PostMapping(path = "/match/search/start")
+    @PostMapping(path = "/api/search/start")
     public MatchStartDto startSearch(UserDetails userDetails) {
         return MatchStartDto.builder().build();
     }
