@@ -1,7 +1,7 @@
 package com.edu.cs.go.bet.match.service;
 
-import com.edu.cs.go.bet.match.dto.MatchStartDto;
+import com.edu.cs.go.bet.match.dto.MatchRegisterResultDto;
 
 public interface SearchService {
-    MatchStartDto registerForSearch(String username);
+    MatchRegisterResultDto registerForSearch(String username);
 }

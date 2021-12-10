@@ -1,9 +1,9 @@
 package com.edu.cs.go.bet.match.controller;
 
-import com.edu.cs.go.bet.match.dto.MatchStartDto;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.edu.cs.go.bet.match.dto.MatchRegisterRequestDto;
+import com.edu.cs.go.bet.match.dto.MatchRegisterResultDto;
 
 public interface SearchController {
 
-    MatchStartDto startSearch(UserDetails userDetails);
+    MatchRegisterResultDto registerForSearch(MatchRegisterRequestDto user);
 }
