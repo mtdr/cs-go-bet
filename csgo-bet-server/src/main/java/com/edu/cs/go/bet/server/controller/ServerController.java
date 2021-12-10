@@ -1,10 +1,10 @@
 package com.edu.cs.go.bet.server.controller;
 
+import com.edu.cs.go.bet.api.dto.common.ApiResponseDto;
+import com.edu.cs.go.bet.api.dto.server.ServerDto;
+import com.edu.cs.go.bet.api.dto.server.ServerStatusRequestDto;
+import com.edu.cs.go.bet.api.dto.server.ServerStatusResponseDto;
 import com.edu.cs.go.bet.dathost.client.ApiException;
-import com.edu.cs.go.bet.server.dto.common.ApiResponseDto;
-import com.edu.cs.go.bet.server.dto.server.ServerDto;
-import com.edu.cs.go.bet.server.dto.server.ServerStatusRequestDto;
-import com.edu.cs.go.bet.server.dto.server.ServerStatusResponseDto;
 
 public interface ServerController {
     String BASE_PATH = "/api/server";

@@ -1,12 +1,12 @@
 package com.edu.cs.go.bet.server.service.impl;
 
+import com.edu.cs.go.bet.api.dto.match.CreateMatchRequestDto;
+import com.edu.cs.go.bet.api.dto.match.CreateMatchResponseDto;
+import com.edu.cs.go.bet.api.exception.NotFoundException;
 import com.edu.cs.go.bet.dathost.client.ApiException;
 import com.edu.cs.go.bet.dathost.client.api.DatHostApi;
 import com.edu.cs.go.bet.dathost.client.model.Match;
 import com.edu.cs.go.bet.server.configuration.DatHostConfigurationProperties;
-import com.edu.cs.go.bet.server.dto.match.CreateMatchRequestDto;
-import com.edu.cs.go.bet.server.dto.match.CreateMatchResponseDto;
-import com.edu.cs.go.bet.server.handling.NotFoundException;
 import com.edu.cs.go.bet.server.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

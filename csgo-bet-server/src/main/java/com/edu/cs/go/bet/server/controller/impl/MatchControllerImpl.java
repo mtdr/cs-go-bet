@@ -1,10 +1,10 @@
 package com.edu.cs.go.bet.server.controller.impl;
 
+import com.edu.cs.go.bet.api.dto.common.ApiResponseDto;
+import com.edu.cs.go.bet.api.dto.match.CreateMatchRequestDto;
+import com.edu.cs.go.bet.api.dto.match.CreateMatchResponseDto;
 import com.edu.cs.go.bet.dathost.client.ApiException;
 import com.edu.cs.go.bet.server.controller.MatchController;
-import com.edu.cs.go.bet.server.dto.common.ApiResponseDto;
-import com.edu.cs.go.bet.server.dto.match.CreateMatchRequestDto;
-import com.edu.cs.go.bet.server.dto.match.CreateMatchResponseDto;
 import com.edu.cs.go.bet.server.service.MatchService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,8 +1,8 @@
 package com.edu.cs.go.bet.server.controller.impl;
 
+import com.edu.cs.go.bet.api.dto.ws.ChatMessage;
+import com.edu.cs.go.bet.api.dto.ws.ChatNotification;
 import com.edu.cs.go.bet.server.controller.WebSocketController;
-import com.edu.cs.go.bet.server.dto.ws.ChatMessage;
-import com.edu.cs.go.bet.server.dto.ws.ChatNotification;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
