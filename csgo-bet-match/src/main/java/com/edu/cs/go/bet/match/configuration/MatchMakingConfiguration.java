@@ -1,6 +1,7 @@
 package com.edu.cs.go.bet.match.configuration;
 
 import com.edu.cs.go.bet.api.dto.common.Player;
+import com.edu.cs.go.bet.api.dto.common.PlayerStatusEnum;
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Configuration
 @Data
@@ -25,5 +27,13 @@ public class MatchMakingConfiguration {
             log.error(e.getMessage(), e);
             return -1;
         }
+    }
+
+    public List<Player> getAvailable() {
+        return players.stream().filter(p -> p.getStatus().equals(PlayerStatusEnum.IN_SEARCH)).collect(Collectors.toList());
+    }
+
+    public boolean remove(List<Player> playersToRemove) {
+        return players.removeAll(playersToRemove);
     }
 }
