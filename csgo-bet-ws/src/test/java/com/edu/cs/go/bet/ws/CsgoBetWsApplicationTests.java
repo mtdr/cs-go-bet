@@ -1,4 +1,4 @@
-package com.example.csgobetws;
+package com.edu.cs.go.bet.ws;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
