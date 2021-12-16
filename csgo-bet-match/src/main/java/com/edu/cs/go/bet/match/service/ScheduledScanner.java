@@ -19,6 +19,7 @@ import java.util.stream.Stream;
 public class ScheduledScanner {
 
     private final MatchMakingConfiguration matchMakingConfiguration;
+    private final KafkaProducerService producerService;
 
     @Scheduled(fixedRate = 10000)
     @Async
@@ -29,7 +30,7 @@ public class ScheduledScanner {
             return;
         }
         players.forEach(p -> p.setStatus(PlayerStatusEnum.PROCESSING));
-        var runner = new SearchRunner(players);
+        var runner = new SimpleSearchRunnerImpl(players);
         runner.searchRun().whenCompleteAsync((g, t) -> {
             if (t != null) {
                 log.error(t.getMessage(), t);
@@ -39,11 +40,13 @@ public class ScheduledScanner {
             playersInGame.forEach(p -> p.setStatus(PlayerStatusEnum.RESPONSING_GAME));
             matchMakingConfiguration.remove(playersInGame);
             log.info("Created game {}", g);
+            // send to ws
+            // receive all ack
+            // send match pair to kafka
+            //
+            producerService.sendGame(g);
         });
 
-        // send to ws
-        // receive all ack
-        // send match pair to kafka
-        //
+
     }
 }
