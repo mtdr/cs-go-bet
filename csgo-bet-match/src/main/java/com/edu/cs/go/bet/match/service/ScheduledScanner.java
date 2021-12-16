@@ -2,7 +2,7 @@ package com.edu.cs.go.bet.match.service;
 
 import com.edu.cs.go.bet.api.dto.common.PlayerStatusEnum;
 import com.edu.cs.go.bet.match.configuration.MatchMakingConfiguration;
-import com.edu.cs.go.bet.match.service.runner.SearchRunner;
+import com.edu.cs.go.bet.match.service.runner.impl.SimpleSearchRunnerImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.Async;
