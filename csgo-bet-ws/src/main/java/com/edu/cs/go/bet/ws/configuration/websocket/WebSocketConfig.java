@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.server.configuration;
+package com.edu.cs.go.bet.ws.configuration.websocket;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.context.annotation.Configuration;

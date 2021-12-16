@@ -1,4 +1,4 @@
-package com.edu.cs.go.bet.server.configuration;
+package com.edu.cs.go.bet.ws.configuration.websocket;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
