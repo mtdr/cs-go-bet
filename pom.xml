@@ -20,6 +20,7 @@
         <module>csgo-bet-auth</module>
         <module>csgo-bet-match</module>
         <module>csgo-bet-api</module>
+        <module>csgo-bet-ws</module>
     </modules>
 
     <properties>
