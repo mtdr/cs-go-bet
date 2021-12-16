@@ -1,8 +1,9 @@
-package com.edu.cs.go.bet.match.service;
+package com.edu.cs.go.bet.match.service.runner.impl;
 
 import com.edu.cs.go.bet.api.dto.common.Game;
 import com.edu.cs.go.bet.api.dto.common.GameStatusEnum;
 import com.edu.cs.go.bet.api.dto.common.Player;
+import com.edu.cs.go.bet.match.service.runner.SearchRunner;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -14,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 
 @Slf4j
 @RequiredArgsConstructor
-public class SearchRunner {
+public class SimpleSearchRunnerImpl implements SearchRunner {
 
     private final List<Player> players;
 
