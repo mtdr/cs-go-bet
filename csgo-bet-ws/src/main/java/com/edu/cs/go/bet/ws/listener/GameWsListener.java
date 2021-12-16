@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 public class GameWsListener {
     private final GameProcessorService processorService;
 
-    @KafkaListener
+    @KafkaListener(topics = "${kafka.consumer.topics:game}", groupId = "${kafka.consumer.groupId:default}")
     public void listenGame(Game game) {
         log.info("[WS] Received Game: [{}]", game);
         processorService.processGame(game);

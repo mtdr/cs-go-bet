@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,4 +17,8 @@ public class Game {
     private List<Player> teamA;
     private List<Player> teamB;
     private GameStatusEnum status;
+
+    public List<Player> getAllPlayers() {
+        return Stream.concat(teamA.stream(), teamB.stream()).collect(Collectors.toList());
+    }
 }

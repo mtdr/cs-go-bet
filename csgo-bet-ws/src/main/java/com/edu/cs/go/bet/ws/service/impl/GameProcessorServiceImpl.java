@@ -16,6 +16,9 @@ public class GameProcessorServiceImpl implements GameProcessorService {
 
     @Override
     public void processGame(Game game) {
-        wsTemplate.convertAndSendToUser("1", "/queue/messages", game);
+        log.info("Processing game [{}]", game);
+        for (var p : game.getAllPlayers()) {
+            wsTemplate.convertAndSendToUser(p.getUsername(), "/queue/messages", game);
+        }
     }
 }

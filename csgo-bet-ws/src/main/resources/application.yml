@@ -1,0 +1,4 @@
+websocket:
+  broker: /user
+  user-prefix: /user
+  app-prefix: /app
