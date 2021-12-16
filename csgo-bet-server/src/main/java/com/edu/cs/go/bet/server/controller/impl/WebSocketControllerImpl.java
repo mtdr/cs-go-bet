@@ -18,14 +18,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Slf4j
 @RequiredArgsConstructor
 @Controller
 public class WebSocketControllerImpl implements WebSocketController {
 
-    private static final AtomicLong SEQ = new AtomicLong(System.currentTimeMillis());
     private final SimpMessagingTemplate messagingTemplate;
 
     @Override

@@ -9,9 +9,9 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class GameCreationListener {
 
-    @KafkaListener(topics = "", groupId = "")
+    @KafkaListener(topics = "${kafka.consumer.topics:game}", groupId = "${kafka.consumer.groupId:default}")
     public void listenGameCreation(Game game) {
-        log.info("Received Game: [{}]", game);
+        log.info("[Server] Received Game: [{}]", game);
     }
 
 }
