@@ -1,6 +1,6 @@
 package com.edu.cs.go.bet.ws.service.impl;
 
-import com.edu.cs.go.bet.api.dto.common.Game;
+import com.edu.cs.go.bet.api.dto.common.GameDto;
 import com.edu.cs.go.bet.ws.service.GameProcessorService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +15,10 @@ public class GameProcessorServiceImpl implements GameProcessorService {
     private final SimpMessagingTemplate wsTemplate;
 
     @Override
-    public void processGame(Game game) {
-        log.info("Processing game [{}]", game);
-        for (var p : game.getAllPlayers()) {
-            wsTemplate.convertAndSendToUser(p.getUsername(), "/queue/messages", game);
+    public void processGame(GameDto gameDto) {
+        log.info("Processing game [{}]", gameDto);
+        for (var p : gameDto.getAllPlayers()) {
+            wsTemplate.convertAndSendToUser(p.getUsername(), "/queue/messages", gameDto);
         }
     }
 }

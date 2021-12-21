@@ -1,6 +1,6 @@
 package com.edu.cs.go.bet.match.configuration;
 
-import com.edu.cs.go.bet.api.dto.common.Game;
+import com.edu.cs.go.bet.api.dto.common.GameDto;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +22,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public ProducerFactory<String, Game> producerFactory() {
+    public ProducerFactory<String, GameDto> producerFactory() {
         Map<String, Object> configProps = new HashMap<>();
         configProps.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -37,7 +37,7 @@ public class KafkaProducerConfig {
     }
 
     @Bean
-    public KafkaTemplate<String, Game> kafkaTemplate() {
+    public KafkaTemplate<String, GameDto> kafkaTemplate() {
         return new KafkaTemplate<>(producerFactory());
     }
 }

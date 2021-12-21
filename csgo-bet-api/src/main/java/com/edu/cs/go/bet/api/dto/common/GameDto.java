@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -13,7 +14,8 @@ import java.util.stream.Stream;
 @NoArgsConstructor
 @Data
 @Builder
-public class Game {
+public class GameDto {
+    private UUID uuid;
     private List<Player> teamA;
     private List<Player> teamB;
     private GameStatusEnum status;
