@@ -1,8 +1,8 @@
 package com.edu.cs.go.bet.match.service;
 
-import com.edu.cs.go.bet.api.dto.common.Game;
+import com.edu.cs.go.bet.api.dto.common.GameDto;
 
 public interface KafkaProducerService {
 
-    void sendGame(Game game);
+    void sendGame(GameDto gameDto);
 }

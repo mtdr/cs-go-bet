@@ -9,6 +9,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
@@ -18,7 +20,7 @@ public class SearchServiceImpl implements SearchService {
 
     @Override
     public MatchRegisterResultDto registerForSearch(String username) {
-        var res = configuration.add(new Player(username, PlayerStatusEnum.IN_SEARCH));
+        var res = configuration.add(new Player(UUID.randomUUID(), username, PlayerStatusEnum.IN_SEARCH));
         // give ticket, add to some searching process
         return MatchRegisterResultDto.builder().order(res).build();
     }

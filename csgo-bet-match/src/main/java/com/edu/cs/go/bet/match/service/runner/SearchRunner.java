@@ -1,6 +1,6 @@
 package com.edu.cs.go.bet.match.service.runner;
 
-import com.edu.cs.go.bet.api.dto.common.Game;
+import com.edu.cs.go.bet.api.dto.common.GameDto;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -12,5 +12,5 @@ public interface SearchRunner {
     /**
      * @return CompletableFuture с результатом создания игры.
      */
-    CompletableFuture<Game> searchRun();
+    CompletableFuture<GameDto> searchRun();
 }

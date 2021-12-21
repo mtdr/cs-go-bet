@@ -20,6 +20,7 @@ public class ScheduledScanner {
 
     private final MatchMakingConfiguration matchMakingConfiguration;
     private final KafkaProducerService producerService;
+    private final GameService gameService;
 
     @Scheduled(fixedRate = 10000)
     @Async
@@ -39,12 +40,12 @@ public class ScheduledScanner {
             var playersInGame = Stream.concat(g.getTeamA().stream(), g.getTeamB().stream()).collect(Collectors.toList());
             playersInGame.forEach(p -> p.setStatus(PlayerStatusEnum.RESPONSING_GAME));
             matchMakingConfiguration.remove(playersInGame);
-            log.info("Created game {}", g);
             // send to ws
             // receive all ack
             // send match pair to kafka
-            //
-            producerService.sendGame(g);
+            var savedGame = gameService.createGame(g);
+            log.info("Created game {}", savedGame);
+            producerService.sendGame(g); // can be in cdc
         });
 
 

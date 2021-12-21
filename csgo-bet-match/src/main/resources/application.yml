@@ -2,3 +2,10 @@ kafka:
   producer:
     bootstrap-address: localhost:9092
     topic-name: game
+spring:
+  data:
+    mongodb:
+      database: cs-go-games
+      port: 27017
+      username: collector
+      password: password

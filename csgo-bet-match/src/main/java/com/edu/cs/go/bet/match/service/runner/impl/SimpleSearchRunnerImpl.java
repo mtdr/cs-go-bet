@@ -1,6 +1,6 @@
 package com.edu.cs.go.bet.match.service.runner.impl;
 
-import com.edu.cs.go.bet.api.dto.common.Game;
+import com.edu.cs.go.bet.api.dto.common.GameDto;
 import com.edu.cs.go.bet.api.dto.common.GameStatusEnum;
 import com.edu.cs.go.bet.api.dto.common.Player;
 import com.edu.cs.go.bet.match.service.runner.SearchRunner;
@@ -21,13 +21,13 @@ public class SimpleSearchRunnerImpl implements SearchRunner {
 
     @SneakyThrows
     @Async
-    public CompletableFuture<Game> searchRun() {
+    public CompletableFuture<GameDto> searchRun() {
         log.info("{} search for = {}", Thread.currentThread(), players);
         // if match found - publish to kafka & save to db (maybe by kafka)
         //
         var teamA = List.of(Objects.requireNonNull(players.stream().findAny().orElse(null)));
         var teamB = List.of(Objects.requireNonNull(players.stream().filter(p -> !teamA.contains(p)).findAny().orElse(null)));
-        return CompletableFuture.completedFuture(Game.builder()
+        return CompletableFuture.completedFuture(GameDto.builder()
                 .teamA(teamA)
                 .teamB(teamB)
                 .status(GameStatusEnum.CREATED)
