@@ -159,13 +159,9 @@
           "type": "number"
         },
         "csgo_settings": {
-          "items": [
-            {
-              "$ref": "#/definitions/csgo_settings"
-            }
-          ],
+          "$ref": "#/definitions/csgo_settings",
           "description": "(CS:GO only) Settings specific to CS:GO",
-          "type": "array"
+          "type": "object"
         },
         "custom_domain": {
           "description": "Use a custom domain for the server",
@@ -3278,7 +3274,10 @@
         ],
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "schema": {
+              "$ref": "#/definitions/GameServer"
+            }
           }
         },
         "summary": "Create server",
