@@ -27,6 +27,7 @@ public class User {
 
     public User(User user) {
         this.id = user.id;
+        this.steamId = user.steamId;
         this.username = user.username;
         this.password = user.password;
         this.email = user.email;
@@ -55,6 +56,9 @@ public class User {
     private String username;
 
     @NotBlank
+    private String steamId;
+
+    @NotBlank
     @Size(max = 100)
     @JsonIgnore
     private String password;
@@ -71,6 +75,8 @@ public class User {
     private Instant updatedAt;
 
     private boolean active;
+
     private Profile userProfile;
+
     private Set<Role> roles;
 }

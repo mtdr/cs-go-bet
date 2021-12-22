@@ -1,7 +1,8 @@
-package com.edu.cs.go.bet.match.service;
+package com.edu.cs.go.bet.server.service.impl;
 
 import com.edu.cs.go.bet.api.dto.common.GameDto;
-import com.edu.cs.go.bet.match.configuration.KafkaProducerConfigProperties;
+import com.edu.cs.go.bet.server.configuration.KafkaProducerConfigProperties;
+import com.edu.cs.go.bet.server.service.KafkaProducerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.core.KafkaTemplate;

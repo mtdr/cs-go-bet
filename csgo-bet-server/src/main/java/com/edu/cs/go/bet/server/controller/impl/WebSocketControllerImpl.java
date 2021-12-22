@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 import org.springframework.web.socket.messaging.SessionSubscribeEvent;
 
 import java.util.List;
@@ -22,6 +23,7 @@ import java.util.List;
 @Slf4j
 @RequiredArgsConstructor
 @Controller
+@EnableWebSocketMessageBroker
 public class WebSocketControllerImpl implements WebSocketController {
 
     private final SimpMessagingTemplate messagingTemplate;

@@ -11,3 +11,7 @@ server:
 spring:
   profiles:
     active: local
+kafka:
+  producer:
+    bootstrap-address: localhost:9092
+    topic-name: game

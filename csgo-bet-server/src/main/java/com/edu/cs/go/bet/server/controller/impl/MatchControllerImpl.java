@@ -3,7 +3,6 @@ package com.edu.cs.go.bet.server.controller.impl;
 import com.edu.cs.go.bet.api.dto.common.ApiResponseDto;
 import com.edu.cs.go.bet.api.dto.match.CreateMatchRequestDto;
 import com.edu.cs.go.bet.api.dto.match.CreateMatchResponseDto;
-import com.edu.cs.go.bet.dathost.client.ApiException;
 import com.edu.cs.go.bet.server.controller.MatchController;
 import com.edu.cs.go.bet.server.service.MatchService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +18,7 @@ public class MatchControllerImpl implements MatchController {
 
     @Override
     @PostMapping(MATCH_CREATE)
-    public ApiResponseDto<CreateMatchResponseDto> create(@RequestBody CreateMatchRequestDto request) throws ApiException {
+    public ApiResponseDto<CreateMatchResponseDto> create(@RequestBody CreateMatchRequestDto request) {
         return ApiResponseDto.success(service.create(request)).build();
     }
 }

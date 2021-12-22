@@ -23,10 +23,16 @@ public class MatchServiceImpl implements MatchService {
     private final DatHostApi datHostApi;
 
     @Override
-    public CreateMatchResponseDto create(CreateMatchRequestDto requestDto) throws ApiException {
+    public CreateMatchResponseDto create(CreateMatchRequestDto requestDto) {
         Match result = null;
-        var request = datHostApi.postMatches()
-                .gameServerId(requestDto.getServerId());
+        DatHostApi.APIpostMatchesRequest request = null;
+        try {
+            request = datHostApi.postMatches()
+                    .gameServerId(requestDto.getServerId());
+        } catch (ApiException e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
 
         if (!CollectionUtils.isEmpty(requestDto.getUsernamesTeamA())) {
             request.team1SteamIds(String.join(",", requestDto.getUsernamesTeamA()));
@@ -37,7 +43,12 @@ public class MatchServiceImpl implements MatchService {
         if (StringUtils.hasLength(requestDto.getMapId())) {
             request.map(requestDto.getMapId());
         }
-        result = request.execute();
+        try {
+            result = request.execute();
+        } catch (ApiException e) {
+            log.error(e.getMessage(), e);
+            return null;
+        }
 
         if (result == null) {
             throw new NotFoundException();
