@@ -35,6 +35,7 @@ public class GameCreationListener {
             return;
         }
         gameDto.setStatus(GameStatusEnum.STARTED);
+        gameDto.setMatch(match);
         kafkaProducerService.sendGame(gameDto);
     }
 }
