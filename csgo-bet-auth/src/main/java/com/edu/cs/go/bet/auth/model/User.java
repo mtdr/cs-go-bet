@@ -9,11 +9,15 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import java.time.Instant;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -23,11 +27,12 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Document
-public class User {
+public class User implements UserDetails {
 
     public User(User user) {
         this.id = user.id;
         this.steamId = user.steamId;
+        this.openIdToken = user.openIdToken;
         this.username = user.username;
         this.password = user.password;
         this.email = user.email;
@@ -48,6 +53,14 @@ public class User {
         }};
     }
 
+    public User(String id, String username, String steamId, String openIdToken, String password) {
+        this.id = id;
+        this.username = username;
+        this.steamId = steamId;
+        this.openIdToken = openIdToken;
+        this.password = password;
+    }
+
     @Id
     private String id;
 
@@ -57,6 +70,9 @@ public class User {
 
     @NotBlank
     private String steamId;
+
+    @NotBlank
+    private String openIdToken;
 
     @NotBlank
     @Size(max = 100)
@@ -79,4 +95,29 @@ public class User {
     private Profile userProfile;
 
     private Set<Role> roles;
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return AuthorityUtils.createAuthorityList("ROLE_USER");
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

@@ -8,3 +8,4 @@ kafka:
   consumer:
     bootstrap-address: localhost:9092
     group-id: cs-go-bet-ws
+    topics: game-started

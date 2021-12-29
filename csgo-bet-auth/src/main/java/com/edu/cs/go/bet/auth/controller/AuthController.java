@@ -13,4 +13,6 @@ public interface AuthController {
     ResponseEntity<?> facebookAuth(FacebookLoginRequest facebookLoginRequest);
 
     ResponseEntity<?> createUser(SignUpRequest payload);
+
+    ResponseEntity<?> steamAuth();
 }

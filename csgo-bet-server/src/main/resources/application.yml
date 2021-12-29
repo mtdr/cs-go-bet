@@ -14,4 +14,4 @@ spring:
 kafka:
   producer:
     bootstrap-address: localhost:9092
-    topic-name: game
+    topic-name: game-started

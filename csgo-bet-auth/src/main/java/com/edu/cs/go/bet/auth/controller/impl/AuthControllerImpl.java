@@ -31,6 +31,7 @@ public class AuthControllerImpl implements AuthController {
     private final UserServiceImpl userService;
     private final FacebookServiceImpl facebookServiceImpl;
 
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
         String token = userService.loginUser(loginRequest.getUsername(), loginRequest.getPassword());
@@ -42,6 +43,12 @@ public class AuthControllerImpl implements AuthController {
         log.info("facebook login {}", facebookLoginRequest);
         String token = facebookServiceImpl.loginUser(facebookLoginRequest.getAccessToken());
         return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+    }
+
+    @PostMapping("/steam/signin")
+    public ResponseEntity<?> steamAuth() {
+        log.info("steam login");
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping(value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
