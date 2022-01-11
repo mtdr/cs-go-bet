@@ -18,6 +18,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.AuthenticationUserDetailsService;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.openid.OpenIDAuthenticationFilter;
 import org.springframework.security.openid.OpenIDAuthenticationProvider;
 import org.springframework.security.openid.OpenIDAuthenticationToken;
 import org.springframework.web.cors.CorsConfiguration;
@@ -55,6 +56,7 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
                 .and().openidLogin().permitAll()
                 .and().cors()
                 .and().csrf().disable();
+        http.addFilterBefore(steamOpenIdIdentifierFilter(), OpenIDAuthenticationFilter.class);
     }
 
     @Bean
@@ -74,6 +76,11 @@ public class SecurityCredentialsConfig extends WebSecurityConfigurerAdapter {
         var openIDAuthenticationProvider = new OpenIDAuthenticationProvider();
         openIDAuthenticationProvider.setAuthenticationUserDetailsService(authenticationUserDetailsService());
         return openIDAuthenticationProvider;
+    }
+
+    @Bean
+    public SteamOpenIdIdentifierFilter steamOpenIdIdentifierFilter() {
+        return new SteamOpenIdIdentifierFilter();
     }
 
     @Bean
